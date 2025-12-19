@@ -18,16 +18,16 @@ Lightweight helper that builds an outline/bookmarks for PDFs missing a table of 
    The script writes `book_with_toc.pdf` by default.
 
 ## Tweaking
-- **Printed → PDF page offset:**  
-  Front matter often uses roman numerals; main text starts later in the PDF. In the script:
-  - `pdf_index = printed_page + 23` handles the main-text offset (printed page 1 → PDF page 24). Change `23` to match your PDF.
-  - Roman numeral pages use `roman_to_int` and subtract 3 to map printed xi → PDF 9. Adjust both offsets if your front matter is longer/shorter.
-- **Contents parsing:**  
-  `CONTENTS_PAGES = range(2, 8)` tells the script which pages contain the printed TOC. Update this range for your book.  
-  If your contents lines wrap differently, tweak `clean_contents_lines` (merge logic) or expand the filters that drop watermark/legal boilerplate.
+- **Printed → PDF page offsets:**  
+  Figure out how many PDF pages precede printed page 1 (e.g., title, copyright, roman-numeral pages). Edit `parse_entries`:
+  - For main text, change the `printed_page + 23` value so printed page 1 points to the correct PDF page (0-based).
+  - For roman numerals, change the `printed_page - 3` value so printed xi points to the correct PDF page. Both offsets are independent.
+- **Contents pages:**  
+  Set `CONTENTS_PAGES` to the 0-based PDF pages that contain the printed TOC. If the TOC spans multiple pages, use a range.
+  If lines wrap oddly, adjust `clean_contents_lines` to merge them differently or relax/tighten the filters that drop boilerplate text.
 - **Outline levels:**  
-  `parse_entries` assigns outline depth from numeric prefixes:
-  - `1`, `2`, … → chapter level
-  - `1.0`, `2.3`, … → section level 1
-  - `1.2.3`, … → section level 2  
-  Adjust the regex logic to match your book’s numbering scheme.
+  `parse_entries` maps numbering to levels:
+  - `1`, `2`, … → chapter
+  - `1.0`, `2.3`, … → section
+  - `1.2.3`, … → subsection  
+  Change the regex checks if your book uses a different numbering style.
