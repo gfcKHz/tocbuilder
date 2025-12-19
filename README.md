@@ -1,5 +1,3 @@
-# tocbuilder: add a TOC to PDFs
-
 Lightweight helper that builds an outline/bookmarks for PDFs missing a table of contents. Configure the printed→PDF page offset and contents-page range to match your book.
 
 ## What’s here
@@ -33,14 +31,3 @@ Lightweight helper that builds an outline/bookmarks for PDFs missing a table of 
   - `1.0`, `2.3`, … → section level 1
   - `1.2.3`, … → section level 2  
   Adjust the regex logic to match your book’s numbering scheme.
-
-## Publishing
-This directory is ready to initialize as a git repo and push:
-```bash
-git init
-git add README.md add_toc.py .gitignore
-git commit -m "Add TOC helper script"
-git remote add origin git@github.com:<your-username>/tocbuilder.git
-git push -u origin main
-```
-Note: do **not** commit copyrighted PDFs. Keep them local and out of version control.
