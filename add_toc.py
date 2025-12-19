@@ -3,8 +3,9 @@ from typing import List, Tuple
 
 from pypdf import PdfReader, PdfWriter
 
-SOURCE = "NumericalRecipesinC.pdf"
-OUTPUT = "NumericalRecipesinC_with_toc.pdf"
+# Input/output filenames (adjust as needed).
+SOURCE = "book.pdf"
+OUTPUT = "book_with_toc.pdf"
 # Pages (0-based) that contain the printed table of contents.
 CONTENTS_PAGES = range(2, 8)
 
